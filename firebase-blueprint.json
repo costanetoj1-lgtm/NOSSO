@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "Transaction": {
+      "title": "Transaction",
+      "description": "A sale record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "client": { "type": "string" },
+        "clientInitial": { "type": "string" },
+        "date": { "type": "string" },
+        "product": { "type": "string" },
+        "value": { "type": "number" },
+        "status": { "type": "string", "enum": ["Finalizada", "Pendente", "Cancelada"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["client", "product", "value", "status"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "A customer profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string", "enum": ["Ativo", "Inativo"] },
+        "totalSpent": { "type": "number" },
+        "lastPurchase": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "status"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "An inventory item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "status": { "type": "string", "enum": ["Em Estoque", "Estoque Baixo", "Esgotado"] },
+        "image": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "sku", "category", "price", "stock", "status"]
+    }
+  },
+  "firestore": {
+    "transactions": {
+      "schema": "Transaction",
+      "description": "Collection of sale transactions"
+    },
+    "customers": {
+      "schema": "Customer",
+      "description": "Collection of customer data"
+    },
+    "products": {
+      "schema": "Product",
+      "description": "Collection of inventory products"
+    }
+  }
+}
